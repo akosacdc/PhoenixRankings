@@ -1,0 +1,53 @@
+team1_player1,team1_player2,team2_player1,team2_player2,outcome
+Kovács Barna,Joó Attila,Szőcs Hunor,Cîrlan Dragoș,lose
+Miklós Hunor,Vezsenyi Ákos,Mihály László,Bara Tamás,lose
+Tóbiás András,Mitra Tamás,Istvándi Hunor,Veres Alpár,lose
+Kereki Dávid,Kerekes Szabolcs,Felházi Lóránd,Katona Dávid,win
+Deményi Róbert,Nagy Mátyás,Kassay László,Borsi Patrick,win
+
+Mihály László,Bara Tamás,Kereki Dávid,Kerekes Szabolcs,win
+Deményi Róbert,Nagy Mátyás,Szőcs Hunor,Cîrlan Dragoș,lose
+Felházi Lóránd,Katona Dávid,Istvándi Hunor,Veres Alpár,lose
+Kassay László,Borsi Patrick,Tóbiás András,Mitra Tamás,lose
+Kiss Borbála,Makkai József,Kovács Barna,Joó Attila,lose
+
+Szőcs Hunor,Cîrlan Dragoș,Mihály László,Bara Tamás,win
+Deményi Róbert,Nagy Mátyás,Istvándi Hunor,Veres Alpár,lose
+Kovács Barna,Joó Attila,Tóbiás András,Mitra Tamás,lose
+Miklós Hunor,Vezsenyi Ákos,Kereki Dávid,Kerekes Szabolcs,win
+Kassay László,Borsi Patrick,Kiss Borbála,Makkai József,win
+
+Istvándi Hunor,Veres Alpár,Szőcs Hunor,Cîrlan Dragoș,lose
+Tóbiás András,Mitra Tamás,Mihály László,Bara Tamás,win
+Kovács Barna,Joó Attila,Kereki Dávid,Kerekes Szabolcs,win
+Deményi Róbert,Nagy Mátyás,Miklós Hunor,Vezsenyi Ákos,lose
+Kiss Borbála,Makkai József,Felházi Lóránd,Katona Dávid,lose
+
+Tóbiás András,Mitra Tamás,Szőcs Hunor,Cîrlan Dragoș,lose
+Istvándi Hunor,Veres Alpár,Mihály László,Bara Tamás,win
+Kovács Barna,Joó Attila,Miklós Hunor,Vezsenyi Ákos,win
+Kassay László,Borsi Patrick,Felházi Lóránd,Katona Dávid,win
+Deményi Róbert,Nagy Mátyás,Kiss Borbála,Makkai József,win
+
+Felházi Lóránd,Katona Dávid,Szőcs Hunor,Cîrlan Dragoș,lose
+Istvándi Hunor,Veres Alpár,Kovács Barna,Joó Attila,lose
+Miklós Hunor,Vezsenyi Ákos,Tóbiás András,Mitra Tamás,lose
+Mihály László,Bara Tamás,Kassay László,Borsi Patrick,lose
+Kiss Borbála,Makkai József,Kereki Dávid,Kerekes Szabolcs,lose
+
+Szőcs Hunor,Cîrlan Dragoș,Miklós Hunor,Vezsenyi Ákos,win
+Kassay László,Borsi Patrick,Tóbiás András,Mitra Tamás,lose
+Istvándi Hunor,Veres Alpár,Mihály László,Bara Tamás,win
+Deményi Róbert,Nagy Mátyás,Kovács Barna,Joó Attila,lose
+
+Szőcs Hunor,Cîrlan Dragoș,Tóbiás András,Mitra Tamás,lose
+Istvándi Hunor,Veres Alpár,Kovács Barna,Joó Attila,win
+Tóbiás András,Mitra Tamás,Istvándi Hunor,Veres Alpár,win
+Tóbiás András,Mitra Tamás,Istvándi Hunor,Veres Alpár,win
+
+Miklós Hunor,Vezsenyi Ákos,Kassay László,Borsi Patrick,lose
+Mihály László,Bara Tamás,Deményi Róbert,Nagy Mátyás,win
+Kassay László,Borsi Patrick,Kovács Barna,Joó Attila,lose
+Mihály László,Bara Tamás,Szőcs Hunor,Cîrlan Dragoș,lose
+Kovács Barna,Joó Attila,Szőcs Hunor,Cîrlan Dragoș,lose
+Szőcs Hunor,Cîrlan Dragoș,Istvándi Hunor,Veres Alpár,lose
