@@ -1,0 +1,12 @@
+team1_player1,team1_player2,team2_player1,team2_player2,outcome
+Kiss Borbála,Vezsenyi Ákos,Grunzó Tímea,Kovács Barna,lose
+Ordean Iulia,Joó Attila,Szegedi Francesca,Istvándi Hunor,win
+Ordean Iulia,Joó Attila,Grunzó Tímea,Kovács Barna,win
+Szegedi Francesca,Istvándi Hunor,Kiss Borbála,Vezsenyi Ákos,lose
+Ordean Iulia,Joó Attila,Kiss Borbála,Vezsenyi Ákos,lose
+Grunzó Tímea,Kovács Barna,Szegedi Francesca,Istvándi Hunor,win
+
+Kiss Borbála,Vezsenyi Ákos,Szegedi Francesca,Istvándi Hunor,win
+Ordean Iulia,Joó Attila,Grunzó Tímea,Kovács Barna,lose
+Kiss Borbála,Vezsenyi Ákos,Grunzó Tímea,Kovács Barna,lose
+Szegedi Francesca,Istvándi Hunor,Ordean Iulia,Joó Attila,win

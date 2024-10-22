@@ -43,6 +43,14 @@ impl PlayersDatabase {
 			}
 		}
 	}
+
+	pub fn update_player_glicko(&mut self, name: String, glicko: GlickoRating) {
+		for (db_name, glicko_rating, _) in &mut self.list {
+			if *db_name == name { 
+				*glicko_rating = glicko;
+			}
+		}
+	}
 }
 
 pub struct TeamsDatabase {
@@ -56,7 +64,7 @@ impl TeamsDatabase {
 
 	pub fn add_new(&mut self, player1_name: String, player1_glicko: GlickoRating, player2_name: String, player2_glicko: GlickoRating) {
 		let team_rating = (player1_glicko.rating + player2_glicko.rating) / 2.0;
-		let team_deviation = ((player1_glicko.deviation * player1_glicko.deviation) + (player2_glicko.deviation * player2_glicko.deviation)).sqrt();
+		let team_deviation = (player1_glicko.deviation + player2_glicko.deviation) / 2.0;
 		let team_glicko = GlickoRating {
 			rating: team_rating,
 			deviation: team_deviation,

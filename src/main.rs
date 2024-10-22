@@ -192,7 +192,7 @@ fn add_set_of_tournament_games_singles(players_database: &mut PlayersDatabase) {
     }
 }
 
-fn add_set_of_tournament_games_doubles(players_database: &mut PlayersDatabase, teams_database: &mut TeamsDatabase) {
+fn add_set_of_tournament_games_open_doubles(players_database: &mut PlayersDatabase, teams_database: &mut TeamsDatabase) {
     let mut rdr = Reader::from_path("data/input_doubles_september.csv").unwrap();
     for result in rdr.records() {
         let record = result.unwrap();
@@ -232,8 +232,48 @@ fn add_set_of_tournament_games_doubles(players_database: &mut PlayersDatabase, t
             teams_database.add_new_result(record.get(2).unwrap().to_string(), record.get(3).unwrap().to_string(), team1_glicko.unwrap(), Outcomes::WIN);
         }
     }
+}
 
+fn add_set_of_tournament_games_mixed_doubles(players_database: &mut PlayersDatabase, teams_database: &mut TeamsDatabase) {
+    let mut rdr = Reader::from_path("data/input_mixed_doubles_september.csv").unwrap();
+    for result in rdr.records() {
+        let record = result.unwrap();
+        if !players_database.find_player(record.get(0).unwrap().to_string()) {
+            players_database.add_new(record.get(0).unwrap().to_string());
+        }
+        if !players_database.find_player(record.get(1).unwrap().to_string()) {
+            players_database.add_new(record.get(1).unwrap().to_string());
+        }
+        if !players_database.find_player(record.get(2).unwrap().to_string()) {
+            players_database.add_new(record.get(2).unwrap().to_string());
+        }
+        if !players_database.find_player(record.get(3).unwrap().to_string()) {
+            players_database.add_new(record.get(3).unwrap().to_string());
+        }
 
+        let team1_player1_glicko = players_database.get_player_data(record.get(0).unwrap().to_string());
+        let team1_player2_glicko = players_database.get_player_data(record.get(1).unwrap().to_string());
+        let team2_player1_glicko = players_database.get_player_data(record.get(2).unwrap().to_string());
+        let team2_player2_glicko = players_database.get_player_data(record.get(3).unwrap().to_string());
+
+        if !teams_database.find_team(record.get(0).unwrap().to_string(), record.get(1).unwrap().to_string()) {
+            teams_database.add_new(record.get(0).unwrap().to_string(), team1_player1_glicko.unwrap(), record.get(1).unwrap().to_string(), team1_player2_glicko.unwrap());
+        }
+        if !teams_database.find_team(record.get(2).unwrap().to_string(), record.get(3).unwrap().to_string()) {
+            teams_database.add_new(record.get(2).unwrap().to_string(), team2_player1_glicko.unwrap(), record.get(3).unwrap().to_string(), team2_player2_glicko.unwrap());
+        }
+
+        let team1_glicko = teams_database.get_team_glicko(record.get(0).unwrap().to_string(), record.get(1).unwrap().to_string());
+        let team2_glicko = teams_database.get_team_glicko(record.get(2).unwrap().to_string(), record.get(3).unwrap().to_string());
+
+        if record.get(4).unwrap() == "win" {
+            teams_database.add_new_result(record.get(0).unwrap().to_string(), record.get(1).unwrap().to_string(), team2_glicko.unwrap(), Outcomes::WIN);
+            teams_database.add_new_result(record.get(2).unwrap().to_string(), record.get(3).unwrap().to_string(), team1_glicko.unwrap(), Outcomes::LOSS);
+        } else {
+            teams_database.add_new_result(record.get(0).unwrap().to_string(), record.get(1).unwrap().to_string(), team2_glicko.unwrap(), Outcomes::LOSS);
+            teams_database.add_new_result(record.get(2).unwrap().to_string(), record.get(3).unwrap().to_string(), team1_glicko.unwrap(), Outcomes::WIN);
+        }
+    }
 }
 
 fn calculate_players_glicko(players_database: &PlayersDatabase) {
@@ -247,14 +287,30 @@ fn calculate_players_glicko(players_database: &PlayersDatabase) {
     }
 }
 
-fn calculate_teams_glicko(teams_database: &TeamsDatabase, players_database: &PlayersDatabase) {
+fn calculate_teams_glicko(teams_database: &TeamsDatabase, players_database: &mut PlayersDatabase) {
     let mut wtr = Writer::from_path("data/output_doubles.csv").unwrap();
     let teams_list = teams_database.list();
     for (name1, name2, glicko, results) in teams_list {
         let config = GlickoConfig::new();
         let new_glicko = glicko_rating_period(&glicko, &results, &config);
+        let team_glicko_diff_per_player = GlickoRating {
+			rating: (new_glicko.rating - glicko.rating) / 2.0,
+			deviation: (new_glicko.deviation - glicko.deviation) / 2.0,
+		};
 
-        wtr.write_record(&[name1.trim(), name2.trim(), &new_glicko.rating.round().to_string(), &new_glicko.deviation.round().to_string()]);
+        let mut player1_glicko = players_database.get_player_data(name1.clone()).unwrap();
+        player1_glicko.rating += team_glicko_diff_per_player.rating;
+        player1_glicko.deviation += team_glicko_diff_per_player.deviation;
+        players_database.update_player_glicko(name1.clone(), player1_glicko);
+        let mut player2_glicko = players_database.get_player_data(name2.clone()).unwrap();
+        player2_glicko.rating += team_glicko_diff_per_player.rating;
+        player2_glicko.deviation += team_glicko_diff_per_player.deviation;
+        players_database.update_player_glicko(name2.clone(), player2_glicko);
+    }
+    let players_list = players_database.list();
+    for (name, glicko, _) in players_list {
+        wtr.write_record(&[name.trim(), &glicko.rating.round().to_string(), &glicko.deviation.round().to_string()]);
+
     }
 }
 
@@ -263,7 +319,7 @@ fn main() {
     let mut teams_database: TeamsDatabase = TeamsDatabase::new(vec![]);
 
     loop {
-        let options: Vec<&str> = vec!["List all players", "List all teams", "Add new player", "Add new tournament", "Add Singles tournament games", "Read Doubles games from csv", "Calculate players Glicko!", "Calculate teams Glicko!", "Exit"];
+        let options: Vec<&str> = vec!["List all players", "List all teams", "Add new player", "Add new tournament", "Add Singles tournament games", "Read Open Doubles games from csv", "Read Mixed Doubles games from csv", "Calculate players Glicko!", "Calculate teams Glicko!", "Exit"];
 
         let ans: Result<&str, InquireError> = Select::new("Input a command: ", options).prompt();
 
@@ -276,9 +332,10 @@ fn main() {
                     "Add new player" => add_new_player(&mut players_database),
                     "Add new tournament" => add_new_tournament(&mut players_database),
                     "Add Singles tournament games" => add_set_of_tournament_games_singles(&mut players_database),
-                    "Read Doubles games from csv" => add_set_of_tournament_games_doubles(&mut players_database, &mut teams_database),
+                    "Read Open Doubles games from csv" => add_set_of_tournament_games_open_doubles(&mut players_database, &mut teams_database),
+                    "Read Mixed Doubles games from csv" => add_set_of_tournament_games_mixed_doubles(&mut players_database, &mut teams_database),
                     "Calculate players Glicko!" => calculate_players_glicko(&players_database),
-                    "Calculate teams Glicko!" => calculate_teams_glicko(&teams_database, &players_database),
+                    "Calculate teams Glicko!" => calculate_teams_glicko(&teams_database, &mut players_database),
                     "Exit" => break,
                     &_ => break,
                 }
