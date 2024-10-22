@@ -1,0 +1,32 @@
+team1_player1,team1_player2,team2_player1,team2_player2,outcome
+Joó Attila,Kereki Dávid,Nagy Mátyás,Cîrlan Dragoș,win
+Vezsenyi Ákos,Kiss Bori,Borsi Patrick,Miklós Hunor,win
+Tóbiás András,Katona Dávid,Kassay László,Mihály Laci,win
+Mitra Tamás,Szőcs Hunor,Kovács Barni,Bara Tamás,win
+
+Kassay László,Kovács Barni,Cîrlan Dragoș,Kiss Bori,win
+Kereki Dávid,Tóbiás András,Borsi Patrick,Mitra Tamás,win
+Miklós Hunor,Szőcs Hunor,Joó Attila,Katona Dávid,win
+Nagy Mátyás,Vezsenyi Ákos,Mihály Laci,Bara Tamás,lose
+
+Nagy Mátyás,Joó Attila,Tóbiás András,Kiss Bori,lose
+Szőcs Hunor,Kassay László,Mihály Laci,Borsi Patrick,win
+Miklós Hunor,Vezsenyi Ákos,Kereki Dávid,Kovács Barni,lose
+Cîrlan Dragoș,Katona Dávid,Mitra Tamás,Bara Tamás,lose
+
+Miklós Hunor,Kassay László,Joó Attila,Bara Tamás,lose
+Vezsenyi Ákos,Szőcs Hunor,Kiss Bori,Mitra Tamás,lose
+Katona Dávid,Borsi Patrick,Nagy Mátyás,Kovács Barni,lose
+Mihály Laci,Tóbiás András,Cîrlan Dragoș,Kereki Dávid,win
+
+Miklós Hunor,Cîrlan Dragoș,Nagy Mátyás,Mitra Tamás,lose
+Kassay László,Kereki Dávid,Kovács Barni,Szőcs Hunor,lose
+Bara Tamás,Tóbiás András,Vezsenyi Ákos,Borsi Patrick,win
+Mihály Laci,Katona Dávid,Kiss Bori,Joó Attila,lose
+
+Tóbiás András,Mihály Laci,Kovács Barni,Joó Attila,lose
+Kovács Barni,Mihály Laci,Kiss Bori,Katona Dávid,win
+Mitra Tamás,Kereki Dávid,Bara Tamás,Kassay László,lose
+Bara Tamás,Nagy Mátyás,Szőcs Hunor,Kassay László,lose
+Kovács Barni,Kassay László,Szőcs Hunor,Joó Attila,lose
+Tóbiás András,Nagy Mátyás,Bara Tamás,Mihály Laci,lose
